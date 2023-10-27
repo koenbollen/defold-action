@@ -1,0 +1,6 @@
+name: 'Defold Action'
+author: 'Koen Bollen'
+description: 'Build Defold projects for web, macOS and Windows.'
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
