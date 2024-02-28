@@ -1,6 +1,29 @@
 name: 'Defold Action'
 author: 'Koen Bollen'
 description: 'Build Defold projects for web, macOS and Windows.'
+inputs:
+  defold-channel:
+    description: 'Which Defold channel to use (stable, beta, alpha).'
+    required: false
+    default: 'stable'
+  defold-version:
+    description: 'Set to a specific version of Defold (e.g. 1.6.4).'
+    required: false
+    default: 'latest'
+  target-platform:
+    description: 'Which platform to build for (win32, linux, wasm-web or all).'
+    required: true
+    default: 'win32'
+outputs:
+  build-path:
+    description: 'The path to the resulting build.'
 runs:
   using: 'docker'
   image: 'Dockerfile'
+  env:
+    DEFOLD_CHANNEL: "${{ inputs.defold-channel }}"
+    DEFOLD_VERSION: "${{ inputs.defold-version }}"
+    TARGET_PLATFORM: "${{ inputs.target-platform }}"
+branding:
+  icon: 'navigation-2'
+  color: 'purple'

@@ -1,0 +1,34 @@
+#!/bin/bash
+set -euo pipefail
+IFS=$'\n\t'
+
+cd "$(dirname "$0")/.."
+
+if [[ ! -f "demo/alien-world/game.project" ]]; then
+  mkdir -p demo/alien-world
+  curl -sSfL "https://github.com/defold/defold-examples/releases/download/0.2.0/alien-world.zip" -o "demo/alien-world.zip" || exit 1
+  unzip -q "demo/alien-world.zip" -d "demo"
+fi
+
+echo "Building for action container image..."
+docker build -t defold-action-test .
+
+GITHUB_OUTPUT="$(mktemp)"
+trap 'rm -rf -- "$GITHUB_OUTPUT"' EXIT
+
+echo "Running action..."
+docker run --rm \
+  -v defold-action-test-cache:"/tmp/defold-cache" \
+  -v "$(pwd)/demo/alien-world:/workspace" \
+  -v "$GITHUB_OUTPUT:$GITHUB_OUTPUT" \
+  -w "/workspace" \
+  -e GITHUB_WORKSPACE="/workspace" \
+  -e GITHUB_OUTPUT="$GITHUB_OUTPUT" \
+  -e TARGET_PLATFORM="windows" \
+  defold-action-test
+  # -it --entrypoint bash \
+
+if [[ -s "$GITHUB_OUTPUT" ]]; then
+  echo "Output:"
+  cat "$GITHUB_OUTPUT"
+fi
