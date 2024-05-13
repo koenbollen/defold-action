@@ -42,6 +42,14 @@ ls -lph "$GITHUB_WORKSPACE/.defold-cache"
     java -jar "$bobjar" "${EXTRA_OPTS[@]}" clean
   fi
 
+  if [[ -n "${EXTRA_CONFIG:-}" ]]; then
+    echo "Writing extra-config.ini..."
+    echo "$EXTRA_CONFIG" > extra-config.ini
+    echo -n "DEBUG extra-config.ini: "
+    base64 extra-config.ini
+    EXTRA_OPTS+=("--settings" "extra-config.ini")
+  fi
+
   builddir=""
   case "$target_platform" in
     "win32" | "windows")

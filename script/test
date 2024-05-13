@@ -16,6 +16,8 @@ docker build -t defold-action-test .
 GITHUB_OUTPUT="$(mktemp)"
 trap 'rm -rf -- "$GITHUB_OUTPUT"' EXIT
 
+EXTRA_CONFIG=$(echo -e "[network]\nserver = http://example.org/test")
+
 echo "Running action..."
 docker run --rm \
   -v defold-action-test-cache:"/tmp/defold-cache" \
@@ -24,6 +26,7 @@ docker run --rm \
   -w "/workspace" \
   -e GITHUB_WORKSPACE="/workspace" \
   -e GITHUB_OUTPUT="$GITHUB_OUTPUT" \
+  -e EXTRA_CONFIG="$EXTRA_CONFIG" \
   -e TARGET_PLATFORM="windows" \
   defold-action-test
   # -it --entrypoint bash \

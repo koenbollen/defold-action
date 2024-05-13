@@ -14,6 +14,9 @@ inputs:
     description: 'Which platform to build for (win32, linux, wasm-web or all).'
     required: true
     default: 'win32'
+  extra-config:
+    description: 'Extra Defold .ini configuration that will be added to game.project.'
+    required: false
 outputs:
   build-path:
     description: 'The path to the resulting build.'
@@ -24,6 +27,7 @@ runs:
     DEFOLD_CHANNEL: "${{ inputs.defold-channel }}"
     DEFOLD_VERSION: "${{ inputs.defold-version }}"
     TARGET_PLATFORM: "${{ inputs.target-platform }}"
+    EXTRA_CONFIG: "${{ inputs.extra-config }}"
 branding:
   icon: 'navigation-2'
   color: 'purple'
