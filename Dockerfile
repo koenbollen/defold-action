@@ -1,4 +1,4 @@
-FROM alpine:3.18.4@sha256:eece025e432126ce23f223450a0326fbebde39cdf496a85d8c016293fc851978
+FROM alpine:3.21.2@sha256:56fa17d2a7e7f168a043a2712e63aed1f8543aeafdcee47c58dcffe38ed51099
 
 RUN apk --no-cache add openjdk21-jre
 RUN apk --no-cache add bash curl jq zip unzip
