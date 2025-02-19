@@ -60,17 +60,23 @@ ls -lph "$GITHUB_WORKSPACE/.defold-cache"
   case "$target_platform" in
     "win32" | "windows")
       echo "Building for $target_platform..."
-      java "${JVM_OPTS[@]}" -jar "$bobjar" "${EXTRA_OPTS[@]}" --platform "x86_64-win32" --architectures "x86_64-win32" --archive distclean build bundle  || exit $?
+      java "${JVM_OPTS[@]}" -jar "$bobjar" "${EXTRA_OPTS[@]}" --platform "x86_64-win32" --architectures "x86_64-win32" --archive distclean || exit $?
+      java "${JVM_OPTS[@]}" -jar "$bobjar" "${EXTRA_OPTS[@]}" --platform "x86_64-win32" --architectures "x86_64-win32" --archive build || exit $?
+      java "${JVM_OPTS[@]}" -jar "$bobjar" "${EXTRA_OPTS[@]}" --platform "x86_64-win32" --architectures "x86_64-win32" --archive bundle || exit $?
       builddir="$(dirname build/default/*/*.exe)" # this is the only way to find the build dir (it includes the project name which we dont know)
       ;;
     "linux")
       echo "Building for $target_platform..."
-      java "${JVM_OPTS[@]}" -jar "$bobjar" "${EXTRA_OPTS[@]}" --platform "x86_64-linux" --architectures "x86_64-linux" --archive distclean build bundle || exit $?
+      java "${JVM_OPTS[@]}" -jar "$bobjar" "${EXTRA_OPTS[@]}" --platform "x86_64-linux" --architectures "x86_64-linux" --archive distclean || exit $?
+      java "${JVM_OPTS[@]}" -jar "$bobjar" "${EXTRA_OPTS[@]}" --platform "x86_64-linux" --architectures "x86_64-linux" --archive build || exit $?
+      java "${JVM_OPTS[@]}" -jar "$bobjar" "${EXTRA_OPTS[@]}" --platform "x86_64-linux" --architectures "x86_64-linux" --archive bundle || exit $?
       builddir="$(dirname build/default/*/*.x86_64)" # this is the only way to find the build dir (it includes the project name which we dont know)
       ;;
     "web")
       echo "Building for $target_platform..."
-      java "${JVM_OPTS[@]}" -jar "$bobjar" "${EXTRA_OPTS[@]}" --platform "wasm-web" --architectures "wasm-web" --archive distclean build bundle  || exit $?
+      java "${JVM_OPTS[@]}" -jar "$bobjar" "${EXTRA_OPTS[@]}" --platform "wasm-web" --architectures "wasm-web" --archive distclean || exit $?
+      java "${JVM_OPTS[@]}" -jar "$bobjar" "${EXTRA_OPTS[@]}" --platform "wasm-web" --architectures "wasm-web" --archive build || exit $?
+      java "${JVM_OPTS[@]}" -jar "$bobjar" "${EXTRA_OPTS[@]}" --platform "wasm-web" --architectures "wasm-web" --archive bundle || exit $?
       builddir="$(dirname build/default/*/index.html)" # this is the only way to find the build dir (it includes the project name which we dont know)
       ;;
     *)
