@@ -33,7 +33,7 @@ ls -lph "$GITHUB_WORKSPACE/.defold-cache"
 (
   cd "$GITHUB_WORKSPACE"
 
-  JVM_OPTS=("-Xmx6G")
+  JVM_OPTS=("-Xmx5G")
   EXTRA_OPTS=("--resource-cache-local=$GITHUB_WORKSPACE/.defold-cache/local")
 
   echo "Resolving dependencies..."
@@ -53,7 +53,7 @@ ls -lph "$GITHUB_WORKSPACE/.defold-cache"
 
   echo "$ free -m:"
   free -m
-  export JVM_HEAP_SIZE=6G
+  export JVM_HEAP_SIZE=5G
   echo "Heap Size: ${JVM_HEAP_SIZE}"
 
   builddir=""
