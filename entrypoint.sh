@@ -33,7 +33,7 @@ ls -lph "$GITHUB_WORKSPACE/.defold-cache"
 (
   cd "$GITHUB_WORKSPACE"
 
-  JVM_OPTS=("-Xmx16g")
+  JVM_OPTS=()
   EXTRA_OPTS=("--resource-cache-local=$GITHUB_WORKSPACE/.defold-cache/local")
 
   echo "Resolving dependencies..."
@@ -50,6 +50,10 @@ ls -lph "$GITHUB_WORKSPACE/.defold-cache"
     base64 extra-config.ini
     EXTRA_OPTS+=("--settings" "extra-config.ini")
   fi
+
+  echo "$ free -m:"
+  free -m
+  echo "Heap Size: ${JVM_HEAP_SIZE}"
 
   builddir=""
   case "$target_platform" in
