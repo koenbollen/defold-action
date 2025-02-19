@@ -33,7 +33,7 @@ ls -lph "$GITHUB_WORKSPACE/.defold-cache"
 (
   cd "$GITHUB_WORKSPACE"
 
-  JVM_OPTS=("-Xm4G")
+  JVM_OPTS=("-Xmx4G")
   EXTRA_OPTS=("--resource-cache-local=$GITHUB_WORKSPACE/.defold-cache/local")
 
   echo "Resolving dependencies..."
