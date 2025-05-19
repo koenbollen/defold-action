@@ -4,7 +4,6 @@ RUN apt-get update \
     && DEBIAN_FRONTEND=noninteractive apt-get install -y \
         openjdk-21-jre \
         bash curl jq zip unzip \
-        autoconf automake build-essential freeglut3-dev libssl-dev libtool libxi-dev libx11-xcb-dev libxrandr-dev libopenal-dev libgl1-mesa-dev libglw1-mesa-dev openssl tofrodos tree valgrind uuid-dev fontconfig fonts-dejavu \
     && rm -rf /var/lib/apt/lists/*
 
 ADD entrypoint.sh /entrypoint.sh
