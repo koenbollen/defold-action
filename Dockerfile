@@ -1,10 +1,10 @@
-FROM ubuntu:24.04@sha256:6015f66923d7afbc53558d7ccffd325d43b4e249f41a6e93eef074c9505d2233
+FROM ubuntu:22.04@sha256:67cadaff1dca187079fce41360d5a7eb6f7dcd3745e53c79ad5efd8563118240
 
 RUN apt-get update \
     && DEBIAN_FRONTEND=noninteractive apt-get install -y \
         openjdk-21-jre \
         bash curl jq zip unzip \
-        build-essential fontconfig fonts-dejavu \
+        autoconf automake build-essential freeglut3-dev libssl-dev libtool libxi-dev libx11-xcb-dev libxrandr-dev libopenal-dev libgl1-mesa-dev libglw1-mesa-dev openssl tofrodos tree valgrind uuid-dev fontconfig fonts-dejavu \
     && rm -rf /var/lib/apt/lists/*
 
 ADD entrypoint.sh /entrypoint.sh

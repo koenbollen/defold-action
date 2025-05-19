@@ -28,8 +28,8 @@ docker run --rm \
   -e GITHUB_OUTPUT="$GITHUB_OUTPUT" \
   -e EXTRA_CONFIG="$EXTRA_CONFIG" \
   -e TARGET_PLATFORM="windows" \
+  -it --entrypoint bash \
   defold-action-test
-  # -it --entrypoint bash \
 
 if [[ -s "$GITHUB_OUTPUT" ]]; then
   echo "Output:"
