@@ -83,8 +83,15 @@ ls -lph "$GITHUB_WORKSPACE/.defold-cache"
       ;;
     "web")
       echo "Building for $target_platform..."
+      mkdir -p /tmp/bob
+      export DM_BOB_ROOTFOLDER=/tmp/bob
       if ! java "${JVM_OPTS[@]}" -jar "$bobjar" "${EXTRA_OPTS[@]}" --platform "wasm-web" --architectures "wasm-web" --archive distclean build bundle; then
         echo "Failed to build for $target_platform"
+        echo "Tint executable:" /tmp/*/x86_64-linux/tint
+        ls -l /tmp/bob/x86_64-linux/tint || true
+        file /tmp/bob/x86_64-linux/tint || true
+        chmod +x /tmp/bob/x86_64-linux/tint
+        /tmp/bob/x86_64-linux/tint --help
         logfile="$GITHUB_WORKSPACE/build/wasm-web/log.txt"
         echo "Debug logs: ${logfile}"
         cat "$logfile"
