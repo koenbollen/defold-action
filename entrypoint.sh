@@ -51,6 +51,11 @@ ls -lph "$GITHUB_WORKSPACE/.defold-cache"
     EXTRA_OPTS+=("--settings" "extra-config.ini")
   fi
 
+  if [[ "${LIVEUPDATE:-false}" == "true" ]]; then
+    echo "Enabling live update support..."
+    EXTRA_OPTS+=("--liveupdate" "yes")
+  fi
+
   free -m
   export JVM_HEAP_SIZE=4G
   echo "Heap Size: ${JVM_HEAP_SIZE}"
@@ -90,6 +95,7 @@ ls -lph "$GITHUB_WORKSPACE/.defold-cache"
         echo "Tint executable:" /tmp/*/x86_64-linux/tint
         ls -l /tmp/bob/x86_64-linux/tint || true
         file /tmp/bob/x86_64-linux/tint || true
+        ldd  /tmp/bob/x86_64-linux/tint || true
         chmod +x /tmp/bob/x86_64-linux/tint
         /tmp/bob/x86_64-linux/tint --help
         logfile="$GITHUB_WORKSPACE/build/wasm-web/log.txt"
