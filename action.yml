@@ -14,6 +14,10 @@ inputs:
     description: 'Which platform to build for (win32, linux, wasm-web or all).'
     required: true
     default: 'win32'
+  variant:
+    description: 'Build variant to use (e.g. debug, release).'
+    required: false
+    default: ''
   liveupdate:
     description: 'Set to true to enable live update support.'
     required: false
@@ -31,6 +35,7 @@ runs:
     DEFOLD_CHANNEL: "${{ inputs.defold-channel }}"
     DEFOLD_VERSION: "${{ inputs.defold-version }}"
     TARGET_PLATFORM: "${{ inputs.target-platform }}"
+    VARIANT: "${{ inputs.variant }}"
     LIVEUPDATE: "${{ inputs.liveupdate }}"
     EXTRA_CONFIG: "${{ inputs.extra-config }}"
 branding:

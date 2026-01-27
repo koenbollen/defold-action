@@ -43,6 +43,11 @@ ls -lph "$GITHUB_WORKSPACE/.defold-cache"
     java -jar "$bobjar" "${EXTRA_OPTS[@]}" clean
   fi
 
+  if [[ -n "${VARIANT:-}" ]]; then
+    echo "Using build variant: ${VARIANT}"
+    EXTRA_OPTS+=("--variant" "${VARIANT}")
+  fi
+
   if [[ -n "${EXTRA_CONFIG:-}" ]]; then
     echo "Writing extra-config.ini..."
     echo "$EXTRA_CONFIG" > extra-config.ini
