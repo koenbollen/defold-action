@@ -61,6 +61,11 @@ ls -lph "$GITHUB_WORKSPACE/.defold-cache"
     EXTRA_OPTS+=("--liveupdate" "yes")
   fi
 
+  if [[ "${WITH_SYMBOLS:-false}" == "true" ]]; then
+    echo "Generating the symbol file..."
+    EXTRA_OPTS+=("--with-symbols")
+  fi
+
   free -m
   export JVM_HEAP_SIZE=4G
   echo "Heap Size: ${JVM_HEAP_SIZE}"

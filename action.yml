@@ -22,6 +22,10 @@ inputs:
     description: 'Set to true to enable live update support.'
     required: false
     default: 'false'
+  with-symbols:
+    description: 'Set to true to generate the symbol file.'
+    required: false
+    default: 'false'
   extra-config:
     description: 'Extra Defold .ini configuration that will be added to game.project.'
     required: false
@@ -37,6 +41,7 @@ runs:
     TARGET_PLATFORM: "${{ inputs.target-platform }}"
     VARIANT: "${{ inputs.variant }}"
     LIVEUPDATE: "${{ inputs.liveupdate }}"
+    WITH_SYMBOLS: "${{ inputs.with-symbols }}"
     EXTRA_CONFIG: "${{ inputs.extra-config }}"
 branding:
   icon: 'navigation-2'
