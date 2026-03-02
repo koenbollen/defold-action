@@ -34,7 +34,7 @@ outputs:
     description: 'The path to the resulting build.'
 runs:
   using: 'docker'
-  image: 'Dockerfile'
+  image: 'docker://ghcr.io/koenbollen/defold-action:latest'
   env:
     DEFOLD_CHANNEL: "${{ inputs.defold-channel }}"
     DEFOLD_VERSION: "${{ inputs.defold-version }}"
