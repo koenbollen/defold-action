@@ -13,7 +13,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        platform: [windows, linux, web]
+        platform: [win32, linux, web]
     steps:
     - uses: actions/checkout@v4
     - uses: actions/cache@v4

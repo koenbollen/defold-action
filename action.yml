@@ -11,7 +11,7 @@ inputs:
     required: false
     default: 'latest'
   target-platform:
-    description: 'Which platform to build for (win32, linux, wasm-web or all).'
+    description: 'Which platform to build for (win32, linux, wasm-web, wasm_pthread-web or all).'
     required: true
     default: 'win32'
   variant:

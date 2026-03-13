@@ -116,6 +116,20 @@ ls -lph "$GITHUB_WORKSPACE/.defold-cache"
 
       builddir="$(dirname build/default/*/index.html)" # this is the only way to find the build dir (it includes the project name which we dont know)
       ;;
+    "wasm_pthread-web")
+      echo "Building for $target_platform..."
+      mkdir -p /tmp/bob
+      export DM_BOB_ROOTFOLDER=/tmp/bob
+      if ! java "${JVM_OPTS[@]}" -jar "$bobjar" "${EXTRA_OPTS[@]}" --platform "wasm_pthread-web" --architectures "wasm_pthread-web" --archive distclean build bundle; then
+        echo "Failed to build for $target_platform"
+        logfile="$GITHUB_WORKSPACE/build/wasm_pthread-web/log.txt"
+        echo "Debug logs: ${logfile}"
+        cat "$logfile"
+        exit 1
+      fi
+
+      builddir="$(dirname build/default/*/index.html)" # this is the only way to find the build dir (it includes the project name which we dont know)
+      ;;
     *)
       echo "Unknown platform: $target_platform"
       exit 1
